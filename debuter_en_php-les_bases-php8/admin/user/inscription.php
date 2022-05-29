@@ -19,49 +19,57 @@
             //ici le formulaire est complet
             // on récupère les données en les protégeant
             $pseudo = strip_tags($_POST["nickname"]);
+            $_SESSION["error"] = [];
 
-            if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
-                die("L'adresse email est incorrecte"); // il faut faire des vérifs en back end pour vérifier qu'on ne peut pas tricher
+            if(strlen($pseudo) < 5){
+                $_SESSION["error"][] = "Le pseudo est trop court";
             }
 
-            // on va hasher le mot de passe
-            $pass = password_hash($_POST["pass"], PASSWORD_ARGON2ID);
+            if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
+                $_SESSION["error"][] = "L'adresse email est incorrecte"; // il faut faire des vérifs en back end pour vérifier qu'on ne peut pas tricher
+            }
 
-            // ajouter ici tous les contrôles souhaités
+            // on ne passe à la suite que si ["error"] est vide
+            if($_SESSION["error"] === []){
+
+                // on va hasher le mot de passe
+                $pass = password_hash($_POST["pass"], PASSWORD_ARGON2ID);
+
+                // ajouter ici tous les contrôles souhaités
             
-            //On enregistre en base de données
-            require_once "../../includes/connect.php";
+                //On enregistre en base de données
+                require_once "../../includes/connect.php";
 
-            $sql = "INSERT INTO `users`(`username`, `email`, `pass`, `roles`) VALUES(:pseudo, :email, '$pass', '[\"ROLE_USER\"]')";
+                $sql = "INSERT INTO `users`(`username`, `email`, `pass`, `roles`) VALUES(:pseudo, :email, '$pass', '[\"ROLE_USER\"]')";
 
-            //On prépare la requête
-            $query = $db->prepare($sql);
+                //On prépare la requête
+                $query = $db->prepare($sql);
 
-            //on injecte les paramètres
-            $query->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
-            $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
+                //on injecte les paramètres
+                $query->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
+                $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
 
-            //on exécute la requête
-            $query->execute();
+                //on exécute la requête
+                $query->execute();
 
-            //On récupère l'id du nouvel utilisateur
-            $id = $db->lastInsertId();
+                //On récupère l'id du nouvel utilisateur
+                $id = $db->lastInsertId();
 
-            //on connecte l'utilisateur          
-            //on stocke dans $_session les informations de l'utilisateur
-            $_SESSION["user"] = [
-                "id" => $id,
-                "pseudo" => $pseudo,
-                "email" => $_POST["email"],
-                "roles" => ["ROLES_USER"]
-            ];
+                //on connecte l'utilisateur          
+                //on stocke dans $_session les informations de l'utilisateur
+                $_SESSION["user"] = [
+                    "id" => $id,
+                    "pseudo" => $pseudo,
+                    "email" => $_POST["email"],
+                    "roles" => ["ROLES_USER"]
+                ];
             
-            //On redirige vers la page de profil(par exemple)
-            header("Location: profil.php");
-
+                //On redirige vers la page de profil(par exemple)
+                header("Location: profil.php");
+            }
         }
         else{
-            die("Le formulaire est incomplet");
+            $_SESSION["error"] = ["Le formulaire est incomplet"];
         }
     }
     
@@ -70,6 +78,17 @@
 ?>
 
 <h1>Inscription</h1>
+
+<?php
+    if(isset($_SESSION["error"])){
+        foreach($_SESSION["error"] as $message){
+            ?>
+                <p><?= $message ?></p>
+            <?php
+        }
+        unset($_SESSION["error"]); // permet d'effacer le message d'erreur après l'avoir affiché
+    }
+?>
 
 <form method="post">
     <div>
