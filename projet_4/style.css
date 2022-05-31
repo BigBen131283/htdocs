@@ -12,7 +12,18 @@
 
 body
 {
-    background: #333;
+    background: var(--backgroundclr);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ROOT */
+
+:root
+{
+    --clr: #222327;
+    --backgroundclr: #333;
+    --btnclr: #29fd53;
 }
 
 /* Accueil parallax */
@@ -76,4 +87,12 @@ section p
     background-position: center;
     mix-blend-mode: lighten;
     filter: brightness(1.1);
+}
+
+/* Navigation */
+nav
+{
+    position: sticky;
+    top: 20px;
+    padding: 20px;
 }

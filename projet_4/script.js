@@ -1,7 +1,7 @@
 
 
 const headerBg = document.getElementById('bg');
-// const headerPaper = document.getElementById('paper');
+const list = document.querySelectorAll('.list');
 
 
 // parallax accueil du site
@@ -11,7 +11,13 @@ function goToMenu(){
     headerBg.style.opacity = 1 - +window.pageYOffset/550+'';
     headerBg.style.top = +window.pageYOffset+'px';
     headerBg.style.backgroundPositionY = - +window.pageYOffset/2+'px';
-    // headerPaper.style.opacity = 1 - +window.pageYOffset/550+'';
-    // headerBg.style.top = +window.pageYOffset+'px';
-    // headerPaper.style.backgroundPositionY = - +window.pageYOffset/2+'px';
 }
+
+// main menu bar
+function activeLink(){
+    list.forEach((item) => 
+    item.classList.remove("active"));
+    this.classList.add("active");
+}
+list.forEach((item) =>
+item.addEventListener('click', activeLink));
