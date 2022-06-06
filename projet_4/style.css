@@ -3,8 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
+/* ROOT */
 
-*
+:root
+{
+    --clr: #222327;
+    --backgroundclr: #333;
+    --btnclr: #29fd53;
+    --sitebgclr: #fdfdfd;
+}
+
+*, ::before, ::after
 {
     margin: 0;
     padding: 0;
@@ -21,18 +30,24 @@ body
 
 .site
 {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     background: var(--sitebgclr);
+}
+
+.site nav
+{
+    align-items: flex-start;
 }
 
 section
 {
     width: 100%;
-    padding: 100px;
+    padding: 15px;
     padding-top: 25px;
     padding-bottom: 50px;
     color: var(--backgroundclr);
@@ -43,139 +58,18 @@ section
     text-align: justify;
 }
 
-section h1
+h1
 {
     width: 100%;
     align-items: flex-start;
-    margin-bottom: 50px;
-    font-size: 3em;
+    margin-bottom: 25px;
+    padding-top: 45px;
+    font-size: 2em;
+    text-align: left;
 }
 
 section p
 {
     font-size: 1.2em;
+    text-align: justify;
 }
-
-/* ROOT */
-
-:root
-{
-    --clr: #222327;
-    --backgroundclr: #333;
-    --btnclr: #29fd53;
-    --sitebgclr: #fdfdfd;
-}
-
-/* Accueil parallax */
-
-.header
-{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: #333;
-}
-
-.header #bg
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 3em;
-    color: #333;
-}
-
-.header .titre
-{
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    font-family: 'Dancing Script', sans-serif;
-    font-size: 2.1em;
-    z-index: 1;
-}
-
-.header .author
-{
-    position: absolute;
-    bottom: 9%;
-    right: 5%;
-    font-family: 'Dancing Script', sans-serif;
-}
-
-.header .author span
-{
-    text-decoration: line-through;
-    font-family: 'Dancing Script', sans-serif;
-}
-
-.header .gad
-{
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    font-family: 'Dancing Script', sans-serif;
-}
-
-.stylo
-{
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    width: 50%;
-    max-width: 500px;
-    aspect-ratio: 1 / 1;
-    transform: rotate(45deg);
-}
-
-.stylo img
-{
-    width: 100%;
-    object-fit: cover;
-}
-
-/* superposition papier déchiré */
-
-.bg
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(./resources/images/alaska1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-.paper
-{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url(./resources/images/ripped-paper.jpg);
-    background-size: cover;
-    background-position: center;
-    mix-blend-mode: lighten;
-    filter: brightness(1.1);
-}
-
-/* Navigation */
-nav
-{
-    position: sticky;
-    top: 20px;
-    padding: 20px;
-    background: var(--backgroundclr);
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    min-height: 130px;
-    border-radius: 20px;
-    margin-top: 20px;
-}
-

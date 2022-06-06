@@ -1,23 +1,22 @@
 
 
 const headerBg = document.getElementById('bg');
-const list = document.querySelectorAll('.list');
+const menuToggle = document.querySelector('.menu_toggle');
+const navigation = document.querySelector('.main_menu');
 
 
 // parallax accueil du site
 window.addEventListener('scroll', goToMenu);
 
 function goToMenu(){
-    headerBg.style.opacity = 1 - +window.pageYOffset/550+'';
+    headerBg.style.opacity = 1 - +window.pageYOffset/400+'';
     headerBg.style.top = +window.pageYOffset+'px';
     headerBg.style.backgroundPositionY = - +window.pageYOffset/2+'px';
 }
 
-// main menu bar
-function activeLink(){
-    list.forEach((item) => 
-    item.classList.remove("active"));
-    this.classList.add("active");
+//main menu
+menuToggle.onclick = function(){
+    navigation.classList.toggle('active');
 }
-list.forEach((item) =>
-item.addEventListener('click', activeLink));
+
+// Biographie de l'auteur

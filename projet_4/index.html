@@ -1,73 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P4 - L'appel de la forêt</title>
+    <title>Billet simple pour l'Alaska</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/gif" href="./resources/images/favicon.png"/>
+    <link rel="stylesheet" href="./classes/styles/header.css">
     <link rel="stylesheet" href="./classes/styles/mainmenu.css">
     <link rel="stylesheet" href="./classes/styles/authorprofile.css">
+    <link rel="stylesheet" href="./classes/styles/project.css">
 </head>
 <body>
-    <div class="header">
-        <div id="bg">
-            <div class="titre">L'appel de la forêt</div>
-            <div class="bg"></div>
-            <div class="paper"></div>
-            <div class="author">Une histoire de <span>Jack London</span></div>
-            <div class="gad">Jean Forteroche</div>
-            <div class="stylo">
-                <img src="./resources/images/pencil.png" alt="Stylo de l'auteur">
-            </div>
-        </div>
-    </div>
+    <header id="bg" class="header">
+        <h1 class="titre">Billet simple pour l'Alaska</h1>
+        <p class="author">Une histoire de </p>
+        <h2 class="gad">Jean Forteroche</h2>
+        <img src="./resources/images/pencil.png" alt="Stylo de l'auteur" class="stylo">
+    </header>
     <div class="site">
-        <div id="accueil"></div>
-        <nav>
-            
-            <div class="navigation">
-                <ul>
-                    <li class="list active">
-                        <a href="#accueil">
-                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                            <span class="text">Accueil</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#accueil">
-                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                            <span class="text">L'auteur</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#accueil">
-                            <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
-                            <span class="text">L'aventure</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#accueil">
-                            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
-                            <span class="text">Photos</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#accueil">
-                            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                            <span class="text">Paramètres</span>
-                        </a>
-                    </li>
-                    <div class="indicator"></div>
-                </ul>
+        <nav class="main_menu">        
+            <div class="sup">
+                <div class="user">
+                    <img src="./resources/images/profile_picture.jpg" alt="Photo de profil" class="profile-picture">
+                </div>
+                <p class="user_name">User NAME</p>
+                <div class="menu_toggle"></div>
             </div>
+            <ul class="menu_access">
+                <li><a href="#accueil"><ion-icon name="home-outline"></ion-icon>Accueil</a></li>
+                <li><a href="#auteur"><ion-icon name="body-outline"></ion-icon>L'Auteur</a></li>
+                <li><a href="#accueil"><ion-icon name="book-outline"></ion-icon>L'Aventure</a></li>
+                <li><a href="#accueil"><ion-icon name="log-out-outline"></ion-icon>Mon Profil</a></li>
+                <li><a href="#accueil"><ion-icon name="log-out-outline"></ion-icon>Se Déconnecter</a></li>
+            </ul>
         </nav>
-        <section>
-            <h1>L'appel de la forêt</h1>
+        <section class="projet" id="accueil">
+            <h1>Le Projet :</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nesciunt error quaerat, magni, repellat accusantium recusandae quidem nihil, voluptatem corporis iste necessitatibus officiis consequatur! Corporis at recusandae laboriosam labore adipisci odio deleniti qui nobis unde modi est veritatis amet, exercitationem suscipit quas et repellendus, molestiae minus? Debitis consequuntur officiis, possimus reiciendis fugiat minima architecto praesentium obcaecati mollitia quos? Odit, autem est corrupti quae eius doloribus consequatur voluptatem. Non iusto est velit. Quaerat iure ut temporibus laborum sapiente minima officiis eum numquam repudiandae, exercitationem maxime at enim consequatur voluptate libero voluptates aspernatur sequi, dolore cumque sed nam corrupti id nulla recusandae! Inventore cumque, molestias repudiandae sapiente enim quo! Corrupti architecto rem dolores. Blanditiis explicabo architecto, iste ducimus obcaecati, quae excepturi voluptas quisquam hic porro quaerat repudiandae illo sint totam doloribus esse aut voluptatum ipsa! Animi, odio neque placeat quaerat debitis hic voluptatum!</p>
         </section>
-        <section>
+        <section id="auteur">
             <h1>L'auteur : Jean Forteroche</h1>
             <div class="box">
                 <div class="content">
