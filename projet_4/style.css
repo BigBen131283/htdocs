@@ -46,10 +46,11 @@ body
 
 section
 {
+    position: relative;
     width: 100%;
     padding: 15px;
-    padding-top: 25px;
-    padding-bottom: 50px;
+    /* padding-top: 25px;
+    padding-bottom: 25px; */
     color: var(--backgroundclr);
     display: flex;
     flex-direction: column;

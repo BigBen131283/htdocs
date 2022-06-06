@@ -3,6 +3,8 @@
 const headerBg = document.getElementById('bg');
 const menuToggle = document.querySelector('.menu_toggle');
 const navigation = document.querySelector('.main_menu');
+const bioToggle = document.querySelector('.bio_toggle');
+const biography = document.querySelector('.displayed_bio')
 
 
 // parallax accueil du site
@@ -20,3 +22,6 @@ menuToggle.onclick = function(){
 }
 
 // Biographie de l'auteur
+bioToggle.onclick = function(){
+    biography.classList.toggle('active');
+}
