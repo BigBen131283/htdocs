@@ -2,30 +2,20 @@
 
 use App\Autoloader;
 use App\Models\AnnoncesModel;
+use App\Models\UsersModel;
 
 require_once './Autoloader.php';
 Autoloader::register();
 
-$model = new AnnoncesModel;
+$model = new UsersModel;
 
-$donnees = [ 
-    'titre' => 'Annonce modifiée',
-    'description' => 'Description de l\'annonce modifiée',
-    'actif' => 0
-];
+$user = $model->setEmail('contact@cours.fr')
+              ->setPassword(password_hash('azerty', PASSWORD_ARGON2I));
 
-$annonce = $model->hydrate($donnees);
+$model->create($user);
+// echo '<br/>';
 
-// $annonce = $model->setTitre('Nouvelle Annonce');
-// $annonce = $model->setDescription('Nouvelle Description');
-// $annonce = $model->setActif(1);
-
-// $annonce = $model
-//     ->setTitre('Nouvelle publication')
-//     ->setDescription('Description Nouvelle')
-//     ->setActif(1);
-
-$model->delete(5);
+$annonce = $model->find(3);
 
 // var_dump($annonce);
 
