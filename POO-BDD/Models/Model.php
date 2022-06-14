@@ -35,9 +35,42 @@ class Model extends Db
         $liste_champs = implode(' AND ', $champs);
         
         // On exécute la requête
-        return $this->requete('SELECT * FROM'.$this->table.' WHERE '. $liste_champs, $valeurs)->fetchAll();
+        return $this->requete('SELECT * FROM '.$this->table.' WHERE '. $liste_champs, $valeurs)->fetchAll();
     }
 
+    public function find(int $id)
+    {
+        return $this->requete("SELECT * FROM $this->table WHERE id = $id")->fetch();
+    }
+    
+    public function create(Model $model)
+    {
+        $champs = [];
+        $inter = [];
+        $valeurs = [];
+
+        // On boucle pour éclater le tableau
+        foreach($model as $champ => $valeur){
+            //INSERT INTO annonces from annonces (titre, description, actif) VALUES (?, ?, ?)
+            if($valeur != null && $champ != 'db' && $champ != 'table'){    
+                $champs[] = "$champ";
+                $inter[] = "?";
+                $valeurs[] = $valeur;
+            }
+        }
+
+        // On transforme le tableau "champs" en une chaîne de caratères
+        $liste_champs = implode(', ', $champs);
+        $liste_inter = implode(', ', $inter);
+        
+        // echo $liste_champs;
+        echo '<br/><br/>';
+        // die($liste_inter);
+        echo '<br/><br/>';
+
+        // On exécute la requête
+        return $this->requete('INSERT INTO '.$this->table.' (' . $liste_champs.') VALUES('.$liste_inter.')', $valeurs);
+    }
 
     public function requete(string $sql, array $attributs = null)
     {
@@ -48,12 +81,34 @@ class Model extends Db
         if($attributs != null){
             // Requête préparée
             $query = $this->db->prepare($sql);
-            $query = execute($attributs);
+            $query->execute($attributs);
             return $query;
         }
         else{
             // Requête simple
             return $this->db->query($sql);
         }
+    }
+
+    /**
+     * Fonction permettant d'hydrater l'objet
+     *
+     * @param array $donnees reprend les données qu'il y a dans le tableau dans index.php
+     * @return object
+     */
+    public function hydrate(array $donnees)
+    {
+        foreach($donnees as $key => $value){
+            // On récupère le nom du setter correspondant à la clé (key)
+            // ex : titre -> setTitre
+            $setter = 'set'.ucfirst($key);
+            
+            //On vérifie si le setter existe
+            if(method_exists($this, $setter)){
+                //On appelle le setter
+                $this->$setter($value);
+            }
+        }
+        return $this;
     }
 }
