@@ -72,6 +72,38 @@ class Model extends Db
         return $this->requete('INSERT INTO '.$this->table.' (' . $liste_champs.') VALUES('.$liste_inter.')', $valeurs);
     }
 
+    public function update(int $id, Model $model)
+    {
+        $champs = [];
+        $valeurs = [];
+
+        // On boucle pour éclater le tableau
+        foreach($model as $champ => $valeur){
+            //UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id = ?
+            if($valeur !== null && $champ != 'db' && $champ != 'table'){    
+                $champs[] = "$champ = ?";
+                $valeurs[] = $valeur;
+            }
+        }
+        $valeurs[] = $id;
+
+        // On transforme le tableau "champs" en une chaîne de caratères
+        $liste_champs = implode(', ', $champs);
+        
+        // echo $liste_champs;
+        echo '<br/><br/>';
+        // die($liste_inter);
+        echo '<br/><br/>';
+
+        // On exécute la requête
+        return $this->requete('UPDATE '.$this->table.' SET '. $liste_champs.' WHERE id = ? ', $valeurs);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->requete("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     public function requete(string $sql, array $attributs = null)
     {
         // On récupère l'instance de Db

@@ -9,8 +9,8 @@ Autoloader::register();
 $model = new AnnoncesModel;
 
 $donnees = [ 
-    'titre' => 'Annonce hydratée',
-    'description' => 'Description de l\'annonce hydratée',
+    'titre' => 'Annonce modifiée',
+    'description' => 'Description de l\'annonce modifiée',
     'actif' => 0
 ];
 
@@ -25,8 +25,8 @@ $annonce = $model->hydrate($donnees);
 //     ->setDescription('Description Nouvelle')
 //     ->setActif(1);
 
-$model->create($annonce);
+$model->delete(5);
 
-var_dump($annonce);
+// var_dump($annonce);
 
 ?>
