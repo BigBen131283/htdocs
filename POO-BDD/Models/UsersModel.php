@@ -25,7 +25,7 @@ class UsersModel extends Model
     /**
      * Set the value of id
      *
-     * @return void
+     * @return object
      */
     public function setId($id) 
     {
@@ -45,7 +45,7 @@ class UsersModel extends Model
     /**
      * Set the value of email
      *
-     * @return void
+     * @return object
      */
     public function setEmail($email) 
     {
@@ -64,7 +64,7 @@ class UsersModel extends Model
     /**
      * Set the value of password
      *
-     * @return voidj'en ai
+     * @return object
      */
     public function setPassword($password) 
     {

@@ -10,7 +10,8 @@ Autoloader::register();
 $model = new UsersModel;
 
 $user = $model->setEmail('contact@cours.fr')
-              ->setPassword(password_hash('azerty', PASSWORD_ARGON2I));
+      ->setPassword(password_hash('azerty', PASSWORD_ARGON2I));
+
 
 $model->create($user);
 // echo '<br/>';
