@@ -16,14 +16,17 @@ class Main
         // On récupère l'URL
 
         $uri = $_SERVER['REQUEST_URI'];
-
+       
+   
         //On vérifie que uri n'est pas vide et se termine par un /
         if(!empty($uri) && $uri !="/" && $uri[-1] === "/"){
             // On enlève le /
             $uri = substr($uri, 0, -1);
+            
 
             // On envoie un code de redirection permanente 
             http_response_code(301);
+            // var_dump($uri);
 
             // On redirige vers l'url sans le /
             // header('Location: '.$uri);
@@ -48,7 +51,7 @@ class Main
 
             if(method_exists($controller, $action)){
                 //S'il reste des paramètres on les pas à la méthode
-                (isset($params[0])) ? $controller->$action($params) : $controller->$action();
+                (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
             }
             else{
                 http_response_code(404);
@@ -65,8 +68,7 @@ class Main
             // On appelle la méthode index
             $controller->index();
         }
-        echo "<br/><br/>";
-        var_dump($controller);
+       
 
     }
 }

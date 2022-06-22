@@ -1,6 +1,7 @@
 <?php
 
 use App\Autoloader;
+use App\Controllers\MainController;
 use App\Core\Main;
 
 // On définit une constante contenant le dossier racine du projet
