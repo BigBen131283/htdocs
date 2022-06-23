@@ -17,7 +17,7 @@ class Main
 
         $uri = $_SERVER['REQUEST_URI'];
        
-   
+   var_dump($uri);
         //On vérifie que uri n'est pas vide et se termine par un /
         if(!empty($uri) && $uri !="/" && $uri[-1] === "/"){
             // On enlève le /
@@ -29,7 +29,7 @@ class Main
             // var_dump($uri);
 
             // On redirige vers l'url sans le /
-            // header('Location: '.$uri);
+            header('Location: '.$uri);
         }
 
         // On gère les paramètres d'URL

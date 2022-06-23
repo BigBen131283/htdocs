@@ -37,6 +37,7 @@ class AnnoncesController extends Controller
 
         // On va chercher une annonce 
         $annonce = $annoncesModel->find($id);
+        
 
         // On envoie à la vue
         $this->render('annonces/lire', compact('annonce'));

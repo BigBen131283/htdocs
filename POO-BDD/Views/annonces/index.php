@@ -6,7 +6,7 @@
 ?>
 
     <article>
-        <h2><a href="annonces/lire/"><?= $annonce->titre ?></a></h2>
+        <h2><a href="/annonces/lire/<?= $annonce->id; ?>"><?= $annonce->titre ?></a></h2>
         <div><?= $annonce->description ?></div>
     </article>
 <?php
